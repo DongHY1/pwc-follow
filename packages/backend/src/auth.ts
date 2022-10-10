@@ -1,16 +1,16 @@
-import { IncomingMessage } from "http";
-import jwt from "jsonwebtoken";
+import { IncomingMessage } from 'http';
+import jwt from 'jsonwebtoken';
 
-import db from "./db";
-import { User } from ".prisma/client";
+import db from './db';
+import { User } from '.prisma/client';
 
 export const getUserFromHeader = async (
-  headers: IncomingMessage["headers"]
+  headers: IncomingMessage['headers']
 ) => {
   const authHeader = headers.authorization;
   if (authHeader) {
     try {
-      const user = await verifyJWTToken(authHeader.split(" ")[1]);
+      const user = await verifyJWTToken(authHeader.split(' ')[1]);
       console.log({ user });
       return user;
     } catch (err) {
@@ -33,7 +33,7 @@ export const verifyJWTToken = async (token: string) => {
     });
     return user;
   } catch (err) {
-    throw new Error("Invalid token");
+    throw new Error('Invalid token');
   }
 };
 
@@ -42,7 +42,7 @@ export const createSession = async (user: User) => {
     { userId: user.id, email: user.email },
     process.env.TOKEN_KEY!,
     {
-      expiresIn: "15d",
+      expiresIn: '15d',
     }
   );
   return token;

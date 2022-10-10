@@ -1,26 +1,22 @@
-import { inferAsyncReturnType } from "@trpc/server";
-import * as trpc from "@trpc/server";
-import type { NodeHTTPCreateContextFnOptions } from "@trpc/server/dist/declarations/src/adapters/node-http";
+import { inferAsyncReturnType } from '@trpc/server';
+import * as trpc from '@trpc/server';
+import * as trpcExpress from '@trpc/server/adapters/express';
+import crypto from 'crypto';
+import { getUserFromHeader } from './auth';
+import { User } from '.prisma/client';
 
-import crypto from "crypto";
-import { IncomingMessage, ServerResponse } from "http";
+const ADMIN_ROLES = ['ADMIN', 'SUPERADMIN'];
 
-import { getUserFromHeader } from "./auth";
-import { User } from ".prisma/client";
-
-const ADMIN_ROLES = ["ADMIN", "SUPERADMIN"];
-
-export const isAdmin = (userRole: User["role"] | undefined) => {
+export const isAdmin = (userRole: User['role'] | undefined) => {
   return userRole && ADMIN_ROLES.includes(userRole);
 };
 
 const createContext = async ({
   req,
   res,
-}: NodeHTTPCreateContextFnOptions<IncomingMessage, ServerResponse>) => {
-  // console.log({ "auth header": req.headers.authorization, path: req.url });
+}: trpcExpress.CreateExpressContextOptions) => {
   const user = await getUserFromHeader(req.headers);
-  const requestId = crypto.randomBytes(10).toString("hex");
+  const requestId = crypto.randomBytes(10).toString('hex');
 
   return {
     headers: req.headers,
@@ -30,6 +26,7 @@ const createContext = async ({
     res,
   };
 };
+export type Context = inferAsyncReturnType<typeof createContext>;
 
 export const protectedRoute = trpc
   .router<Context>()
@@ -55,7 +52,7 @@ export const adminRoute = trpc
     }
 
     if (!isAdmin(user.role)) {
-      throw new Error("Unauthorized");
+      throw new Error('Unauthorized');
     }
 
     ctx.user = user;
@@ -64,5 +61,3 @@ export const adminRoute = trpc
   });
 
 export default createContext;
-
-export type Context = inferAsyncReturnType<typeof createContext>;
