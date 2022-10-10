@@ -1,0 +1,14 @@
+{
+  "name": "follow",
+  "private": "true",
+  "scripts": {
+    "start": "concurrently \"wsrun --parallel start\""
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "concurrently": "^7.4.0",
+    "wsrun": "^5.2.4"
+  }
+}
