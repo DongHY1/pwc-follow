@@ -18,8 +18,12 @@ const Home: NextPage = () => {
           </div>
 
           <ul className="mt-10 space-y-1 max-w-md list-inside text-gray-500 dark:text-gray-400">
-            <List text="End to End TypeSafe" />
-            <List text="Use Cypress to Test " />
+            <List text="🧙‍♂️ E2E Typesafety with tRPC" />
+            <List text="🔐 E2E testing with Cypress" />
+            <List text="🛠 FullStack React with Next.js " />
+            <List text="📚 Database with Prisma & PostgreSQL" />
+            <List text="⚡ CI/CD setup using GitHub Actions" />
+            <List text="🚢 Docker It !" />
           </ul>
 
           <div className="mt-20 flex justify-center items-center w-full mx-auto">
