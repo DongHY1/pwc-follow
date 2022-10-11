@@ -1,23 +1,23 @@
-import * as trpc from "@trpc/server";
-import bcrypt from "bcrypt";
-import * as Yup from "yup";
+import * as trpc from '@trpc/server';
+import bcrypt from 'bcrypt';
+import * as Yup from 'yup';
 
-import { createSession } from "../auth";
-import { Context, protectedRoute } from "../Context";
-import db from "../db";
-import signup, { SignupSchema } from "../services/AuthService/signup";
+import { createSession } from '../auth';
+import { Context, protectedRoute } from '../Context';
+import db from '../db';
+import signup, { SignupSchema } from '../services/AuthService/signup';
 
 const AuthController = trpc
   .router<Context>()
   .merge(
-    "me/",
-    protectedRoute.query("", {
+    'me/',
+    protectedRoute.query('', {
       resolve: async ({ ctx }) => {
         return ctx.user;
       },
     })
   )
-  .mutation("login", {
+  .mutation('login', {
     input: Yup.object({
       email: Yup.string().required(),
       password: Yup.string().required(),
@@ -29,23 +29,23 @@ const AuthController = trpc
         },
       });
 
-      if (!user) throw new Error("Invalid credentials");
+      if (!user) throw new Error('Invalid credentials');
 
       const doPasswordsMatch = await bcrypt.compare(
         password,
-        user.hashedPassword
+        user.hashedpassword
       );
-      if (!doPasswordsMatch) throw new Error("Invalid credentials");
+      if (!doPasswordsMatch) throw new Error('Invalid credentials');
 
       const token = await createSession(user);
 
       return { token };
     },
   })
-  .mutation("signup", {
+  .mutation('signup', {
     input: SignupSchema,
-    resolve: async ({ input: { email, password } }) => {
-      const user = await signup({ email, password });
+    resolve: async ({ input: { name, email, password } }) => {
+      const user = await signup({ name, email, password });
       const token = await createSession(user);
       return { token };
     },

@@ -1,10 +1,10 @@
-import React from "react";
-import Link from "next/link";
+import React from 'react';
+import Link from 'next/link';
 import {
   AuthenticatedOnly,
   UnauthenticatedOnly,
   useAuth,
-} from "../contexts/auth";
+} from '../contexts/auth';
 
 export const Navbar = () => {
   const { logout } = useAuth();
@@ -14,11 +14,6 @@ export const Navbar = () => {
         <div className="px-5 py-2  bg-white font-bold rounded">
           <Link href="/">
             <a>Home</a>
-          </Link>
-        </div>
-        <div className="px-5 py-2  bg-white font-bold rounded">
-          <Link href="/my-todos">
-            <a>My Todos</a>
           </Link>
         </div>
       </div>

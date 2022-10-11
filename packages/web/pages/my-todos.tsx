@@ -14,7 +14,7 @@ const Home: NextPage = () => {
     enabled: isAuthenticated,
   });
 
-  useRequiresAuth();
+  useRequiresAuth(isAuthenticated);
 
   const queryClient = useQueryClient();
   const completeTodoMutation = trpc.useMutation('todos/complete', {

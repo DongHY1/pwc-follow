@@ -28,7 +28,7 @@ export const verifyJWTToken = async (token: string) => {
     };
     const user = await db.user.findFirst({
       where: {
-        id: data.userId,
+        id: data.userId.toString(),
       },
     });
     return user;

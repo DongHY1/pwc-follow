@@ -4,7 +4,7 @@ import cors from 'cors';
 import express from 'express';
 import createContext, { Context } from './Context';
 import AuthController from './controllers/AuthController';
-import TodosController from './controllers/TodosController';
+import UserController from './controllers/UserController';
 export const appRouter = trpc
   .router<Context>()
   .query('hello', {
@@ -13,7 +13,7 @@ export const appRouter = trpc
     },
   })
   .merge('auth/', AuthController)
-  .merge('todos/', TodosController);
+  .merge('user/', UserController);
 
 export type AppRouter = typeof appRouter;
 const app = express();
@@ -26,11 +26,6 @@ app.use(
     createContext,
   })
 );
-// create handler
-// const handler = trpc.createHttpHandler({
-//   router: appRouter,
-//   createContext,
-// });
 app.listen(port, () => {
-  console.log(`api-server listening at http://localhost:${port}`);
+  console.log(`Server is listening at http://localhost:${port}`);
 });
