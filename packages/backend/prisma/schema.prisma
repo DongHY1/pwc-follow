@@ -12,8 +12,8 @@ model User {
   name           String   @db.VarChar(255)
   email          String   @unique
   hashedpassword String
-  followers      Follow[] @relation("followers")
-  followering    Follow[] @relation("followings")
+  followers     Follow[]  @relation("followings")
+  followings    Follow[]  @relation("followers")
   createdAt      DateTime @default(now())
   updatedAt      DateTime @default(now()) @updatedAt
 
@@ -25,10 +25,6 @@ model Follow {
   followingId String
   follower    User   @relation("followers", fields: [followerId], references: [id])
   following   User   @relation("followings", fields: [followingId], references: [id])
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now()) @updatedAt
-
   @@id([followingId, followerId])
   @@map(name: "follows")
 }
