@@ -11,15 +11,4 @@ const MainLayout = ({ children }: { children: JSX.Element }) => {
   );
 };
 
-export const Card = ({
-  children,
-  className,
-  ...props
-}: {
-  children: JSX.Element;
-  className?: string;
-}) => {
-  return <div {...props}>{children}</div>;
-};
-
 export default MainLayout;

@@ -1,5 +1,4 @@
 import { Formik } from 'formik';
-import type { NextPage } from 'next';
 import Link from 'next/link';
 import { trpc } from '../api/APIProvider';
 import { useAuth } from '../contexts/auth';
@@ -34,10 +33,8 @@ const Form = (props: FormProps) => {
                     : { name: '', email: '', password: '' }
                 }
                 onSubmit={async (values) => {
-                  try {
-                    const { token } = await mutation.mutateAsync(values);
-                    authenticate(token);
-                  } catch (err) {}
+                  const { token } = await mutation.mutateAsync(values);
+                  authenticate(token);
                 }}
               >
                 {({
