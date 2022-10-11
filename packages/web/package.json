@@ -3,9 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "start": "next dev",
     "build": "next build",
-    "start": "next start",
     "lint": "next lint",
     "test": "yarn playwright test",
     "test:watch": "nodemon -e ts,js,tsx,jsx -x yarn test"
