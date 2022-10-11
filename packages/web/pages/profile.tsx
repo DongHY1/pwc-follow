@@ -60,29 +60,27 @@ const Profile: NextPage = () => {
                     className="divide-y divide-gray-200 dark:divide-gray-700"
                   >
                     {list?.followinglist?.map((user) => (
-                      <>
-                        <li className="py-3 sm:py-4" key={user.following.id}>
-                          <div className="flex items-center space-x-4">
-                            <div className="flex-shrink-0">
-                              <div className="w-8 h-8 rounded-full" />
-                            </div>
-                            <div className="flex-1 min-w-0">
-                              <p className="text-m font-medium text-gray-900 truncate dark:text-white">
-                                {user.following.name}
-                              </p>
-                              <p className="text-m text-gray-500 truncate dark:text-gray-400">
-                                Email: {user.following.email}
-                              </p>
-                            </div>
-                            <Follow
-                              id={user.following.id}
-                              hasFollow={hasFollow(user.following.id)}
-                              unFollowMutate={unfollowMutate}
-                              followMutate={followMutate}
-                            />
+                      <li className="py-3 sm:py-4" key={user.following.id}>
+                        <div className="flex items-center space-x-4">
+                          <div className="flex-shrink-0">
+                            <div className="w-8 h-8 rounded-full" />
                           </div>
-                        </li>
-                      </>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-m font-medium text-gray-900 truncate dark:text-white">
+                              {user.following.name}
+                            </p>
+                            <p className="text-m text-gray-500 truncate dark:text-gray-400">
+                              Email: {user.following.email}
+                            </p>
+                          </div>
+                          <Follow
+                            id={user.following.id}
+                            hasFollow={hasFollow(user.following.id)}
+                            unFollowMutate={unfollowMutate}
+                            followMutate={followMutate}
+                          />
+                        </div>
+                      </li>
                     ))}
                   </ul>
                 </div>
@@ -100,29 +98,27 @@ const Profile: NextPage = () => {
                     className="divide-y divide-gray-200 dark:divide-gray-700"
                   >
                     {users?.map((user) => (
-                      <>
-                        <li className="py-3 sm:py-4" key={user.id}>
-                          <div className="flex items-center space-x-4">
-                            <div className="flex-shrink-0">
-                              <div className="w-8 h-8 rounded-full" />
-                            </div>
-                            <div className="flex-1 min-w-0">
-                              <p className="text-m font-medium text-gray-900 truncate dark:text-white">
-                                {user.name}
-                              </p>
-                              <p className="text-m text-gray-500 truncate dark:text-gray-400">
-                                Email: {user.email}
-                              </p>
-                            </div>
-                            <Follow
-                              id={user.id}
-                              hasFollow={hasFollow(user.id)}
-                              unFollowMutate={unfollowMutate}
-                              followMutate={followMutate}
-                            />
+                      <li className="py-3 sm:py-4" key={user.id}>
+                        <div className="flex items-center space-x-4">
+                          <div className="flex-shrink-0">
+                            <div className="w-8 h-8 rounded-full" />
                           </div>
-                        </li>
-                      </>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-m font-medium text-gray-900 truncate dark:text-white">
+                              {user.name}
+                            </p>
+                            <p className="text-m text-gray-500 truncate dark:text-gray-400">
+                              Email: {user.email}
+                            </p>
+                          </div>
+                          <Follow
+                            id={user.id}
+                            hasFollow={hasFollow(user.id)}
+                            unFollowMutate={unfollowMutate}
+                            followMutate={followMutate}
+                          />
+                        </div>
+                      </li>
                     ))}
                   </ul>
                 </div>
@@ -140,23 +136,21 @@ const Profile: NextPage = () => {
                     className="divide-y divide-gray-200 dark:divide-gray-700"
                   >
                     {list?.followerslist?.map((user) => (
-                      <>
-                        <li className="py-3 sm:py-4" key={user.follower.id}>
-                          <div className="flex items-center space-x-4">
-                            <div className="flex-shrink-0">
-                              <div className="w-8 h-8 rounded-full" />
-                            </div>
-                            <div className="flex-1 min-w-0">
-                              <p className="text-m font-medium text-gray-900 truncate dark:text-white">
-                                {user.follower.name}
-                              </p>
-                              <p className="text-m text-gray-500 truncate dark:text-gray-400">
-                                Email: {user.follower.email}
-                              </p>
-                            </div>
+                      <li className="py-3 sm:py-4" key={user.follower.id}>
+                        <div className="flex items-center space-x-4">
+                          <div className="flex-shrink-0">
+                            <div className="w-8 h-8 rounded-full" />
                           </div>
-                        </li>
-                      </>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-m font-medium text-gray-900 truncate dark:text-white">
+                              {user.follower.name}
+                            </p>
+                            <p className="text-m text-gray-500 truncate dark:text-gray-400">
+                              Email: {user.follower.email}
+                            </p>
+                          </div>
+                        </div>
+                      </li>
                     ))}
                   </ul>
                 </div>

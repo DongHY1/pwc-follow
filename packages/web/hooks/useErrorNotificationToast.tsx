@@ -1,5 +1,5 @@
-import React from "react";
-import toast, { Toaster } from "react-hot-toast";
+import React from 'react';
+import toast from 'react-hot-toast';
 
 export const useErrorNotificationToast = (errorMessage?: string) => {
   React.useEffect(() => {

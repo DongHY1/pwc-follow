@@ -9,7 +9,7 @@ import {
 export const Navbar = () => {
   const { logout } = useAuth();
   return (
-    <div className="w-full flex justify-between py-5">
+    <div className="w-full flex justify-between py-4">
       <div className="flex gap-4">
         <div className="px-5 py-2  bg-white font-bold rounded">
           <Link href="/">
