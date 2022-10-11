@@ -7,8 +7,46 @@ const UserController = trpc
   .router<Context>()
   .query('all', {
     resolve: async ({ ctx }) => {
-      const users = await db.user.findMany();
+      const users = await db.user.findMany({
+        where: {
+          id: {
+            not: ctx.user?.id,
+          },
+        },
+        orderBy: {
+          createdAt: 'desc',
+        },
+        include: { followers: true, followings: true },
+      });
+      // 根据followings在所有列表中过滤出未关注和关注的
       return users;
+    },
+  })
+  .query('list', {
+    resolve: async ({ ctx }) => {
+      const list = await db.user.findFirst({
+        where: {
+          id: {
+            equals: ctx.user?.id,
+          },
+        },
+        include: {
+          followers: {
+            include: {
+              follower: true,
+            },
+          },
+          followings: {
+            include: {
+              following: true,
+            },
+          },
+        },
+      });
+      return {
+        followerslist: list?.followers,
+        followinglist: list?.followings,
+      };
     },
   })
   .query('follow', {
@@ -23,6 +61,25 @@ const UserController = trpc
         },
       });
       return user;
+    },
+  })
+  .query('checkFollow', {
+    input: Yup.object({
+      id: Yup.string().required(),
+    }),
+    output: Yup.object({
+      isFollow: Yup.boolean(),
+    }),
+    resolve: async ({ ctx, input }) => {
+      const check = await db.follow.findFirst({
+        where: {
+          followerId: ctx.user?.id,
+          followingId: input.id,
+        },
+      });
+      return {
+        isFollow: check ? true : false,
+      };
     },
   })
   .mutation('subscribe', {

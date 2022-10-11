@@ -10,57 +10,147 @@ const Profile: NextPage = () => {
   const { data: users } = trpc.useQuery(['user/all'], {
     enabled: isAuthenticated,
   });
-  const { data: follow } = trpc.useQuery(['user/follow'], {
+  const { data: list } = trpc.useQuery(['user/list'], {
     enabled: isAuthenticated,
   });
   const { mutate: followMutate } = trpc.useMutation(['user/subscribe'], {
     onSuccess: () => {
       queryClient.invalidateQueries(['user/follow']);
+      queryClient.invalidateQueries(['user/list']);
     },
   });
   const { mutate: unfollowMutate } = trpc.useMutation(['user/unsubscribe'], {
     onSuccess: () => {
       queryClient.invalidateQueries(['user/follow']);
+      queryClient.invalidateQueries(['user/list']);
     },
   });
   useRequiresAuth(isAuthenticated);
-  const handleFollowClick = (id: string) => {
-    // 把用户id 加到follower里
-    console.log(`follow ${id}`);
-    followMutate({ id });
-  };
-  const handleUnFollowClick = (id: string) => {
-    unfollowMutate({ id });
-  };
   return (
     <MainLayout>
       <Card>
         <>
           <h1 className="font-black text-3xl mb-10">{user?.name} Profile</h1>
           <h1 className="font-black text-3xl mb-10">
-            Follower : {follow?.followers.length}
+            Follower : {list?.followerslist?.length}
           </h1>
+
           <h2 className="font-black text-3xl mb-10">
-            Following : {follow?.followings.length}
+            Following : {list?.followinglist?.length}
           </h2>
-          <h3>{JSON.stringify(follow?.followings)}</h3>
-          <div className="max-w-xl"></div>
-          <div>
-            {users?.map((item) => (
-              <>
-                <ul>
-                  <li>{item.name}</li>
-                  <button onClick={() => handleFollowClick(item.id)}>
-                    Follow
-                  </button>
-                  <button onClick={() => handleUnFollowClick(item.id)}>
-                    UnFollow
-                  </button>
+          <div className="flex justify-between">
+            {/* Following List */}
+            <div className="p-4 w-full max-w-md bg-white rounded-lg border shadow-md sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+              <div className="flex justify-between items-center mb-4">
+                <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white">
+                  Your Following Lists
+                </h5>
+              </div>
+              <div>
+                <ul
+                  role="list"
+                  className="divide-y divide-gray-200 dark:divide-gray-700"
+                >
+                  {list?.followinglist?.map((user) => (
+                    <>
+                      <li className="py-3 sm:py-4">
+                        <div className="flex items-center space-x-4">
+                          <div className="flex-shrink-0">
+                            <div className="w-8 h-8 rounded-full" />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-m font-medium text-gray-900 truncate dark:text-white">
+                              {user.following.name}
+                            </p>
+                            <p className="text-m text-gray-500 truncate dark:text-gray-400">
+                              Email: {user.following.email}
+                            </p>
+                          </div>
+
+                          <button
+                            className="inline-flex items-center text-base font-semibold  text-red-900dark:text-white"
+                            onClick={() =>
+                              unfollowMutate({ id: user.following.id })
+                            }
+                          >
+                            Unfollow
+                          </button>
+                        </div>
+                      </li>
+                    </>
+                  ))}
                 </ul>
-              </>
-            ))}
+              </div>
+            </div>
+            {/* All User List */}
+            <div className="p-4 w-full max-w-md bg-white rounded-lg border shadow-md sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+              <div className="flex justify-between items-center mb-4">
+                <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white">
+                  All User Lists
+                </h5>
+              </div>
+              <div>
+                <ul
+                  role="list"
+                  className="divide-y divide-gray-200 dark:divide-gray-700"
+                >
+                  {users?.map((user) => (
+                    <>
+                      <li className="py-3 sm:py-4">
+                        <div className="flex items-center space-x-4">
+                          <div className="flex-shrink-0">
+                            <div className="w-8 h-8 rounded-full" />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-m font-medium text-gray-900 truncate dark:text-white">
+                              {user.name}
+                            </p>
+                            <p className="text-m text-gray-500 truncate dark:text-gray-400">
+                              Email: {user.email}
+                            </p>
+                          </div>
+                        </div>
+                      </li>
+                    </>
+                  ))}
+                </ul>
+              </div>
+            </div>
+            {/* Follower List */}
+            <div className="p-4 w-full max-w-md bg-white rounded-lg border shadow-md sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+              <div className="flex justify-between items-center mb-4">
+                <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white">
+                  Your Follower Lists
+                </h5>
+              </div>
+              <div>
+                <ul
+                  role="list"
+                  className="divide-y divide-gray-200 dark:divide-gray-700"
+                >
+                  {list?.followerslist?.map((user) => (
+                    <>
+                      <li className="py-3 sm:py-4">
+                        <div className="flex items-center space-x-4">
+                          <div className="flex-shrink-0">
+                            <div className="w-8 h-8 rounded-full" />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-m font-medium text-gray-900 truncate dark:text-white">
+                              {user.follower.name}
+                            </p>
+                            <p className="text-m text-gray-500 truncate dark:text-gray-400">
+                              Email: {user.follower.email}
+                            </p>
+                          </div>
+                        </div>
+                      </li>
+                    </>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </div>
-          <div className="max-w-sm"></div>
         </>
       </Card>
     </MainLayout>

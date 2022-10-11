@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import { Navbar } from "../components/Navbar";
+import { Navbar } from '../components/Navbar';
 
 const MainLayout = ({ children }: { children: JSX.Element }) => {
   return (
