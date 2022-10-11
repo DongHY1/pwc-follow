@@ -1,18 +1,28 @@
 import MainLayout, { Card } from '../layouts/MainLayout';
+import { useQueryClient } from 'react-query';
 import { trpc } from '../api/APIProvider';
 import type { NextPage } from 'next';
 import useRequiresAuth from '../hooks/useRequiresAuth';
 import { useAuth } from '../contexts/auth';
 const Profile: NextPage = () => {
   const { user, isAuthenticated } = useAuth();
+  const queryClient = useQueryClient();
   const { data: users } = trpc.useQuery(['user/all'], {
     enabled: isAuthenticated,
   });
   const { data: follow } = trpc.useQuery(['user/follow'], {
     enabled: isAuthenticated,
   });
-  const { mutate: followMutate } = trpc.useMutation(['user/subscribe']);
-  const { mutate: unfollowMutate } = trpc.useMutation(['user/unsubscribe']);
+  const { mutate: followMutate } = trpc.useMutation(['user/subscribe'], {
+    onSuccess: () => {
+      queryClient.invalidateQueries(['user/follow']);
+    },
+  });
+  const { mutate: unfollowMutate } = trpc.useMutation(['user/unsubscribe'], {
+    onSuccess: () => {
+      queryClient.invalidateQueries(['user/follow']);
+    },
+  });
   useRequiresAuth(isAuthenticated);
   const handleFollowClick = (id: string) => {
     // 把用户id 加到follower里
