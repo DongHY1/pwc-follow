@@ -82,42 +82,6 @@ export const Navbar = () => {
         </div>
       </div>
     </nav>
-
-    // <div classNameName="w-full flex justify-between py-4">
-    //   <div classNameName="flex gap-4">
-    //     <div classNameName="px-5 py-2  bg-white font-bold rounded">
-    //       <Link href="/">
-    //         <a>Home</a>
-    //       </Link>
-    //     </div>
-    //   </div>
-    //   <UnauthenticatedOnly>
-    //     <div classNameName="flex">
-    //       <div classNameName="ml-10 px-5 py-2  bg-white font-bold rounded">
-    //         <Link href="/signup">
-    //           <a>Sign Up</a>
-    //         </Link>
-    //       </div>
-    //       <div classNameName="ml-10 px-5 py-2  bg-white font-bold rounded">
-    //         <Link href="/login">
-    //           <a>Log In</a>
-    //         </Link>
-    //       </div>
-    //     </div>
-    //   </UnauthenticatedOnly>
-    //   <AuthenticatedOnly>
-    // <div classNameName="flex">
-    //   <div classNameName="ml-10 px-5 py-2  bg-white font-bold rounded">
-    //     <UserInfo />
-    //   </div>
-    //   <div classNameName="ml-10 px-5 py-2  bg-white font-bold rounded">
-    //     <button classNameName="font-bold" onClick={logout}>
-    //       Log Out
-    //     </button>
-    //   </div>
-    // </div>
-    // </AuthenticatedOnly>
-    // </div>
   );
 };
 
