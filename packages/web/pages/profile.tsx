@@ -16,7 +16,6 @@ const Profile: NextPage = () => {
   });
   const { mutate: followMutate } = trpc.useMutation(['user/subscribe'], {
     onSuccess: () => {
-      console.log('我关注了!');
       queryClient.invalidateQueries(['user/all']);
       queryClient.invalidateQueries(['user/list']);
     },

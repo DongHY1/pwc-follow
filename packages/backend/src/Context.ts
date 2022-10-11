@@ -26,7 +26,6 @@ export const protectedRoute = trpc
   .middleware(async ({ ctx, next }) => {
     const user = await getUserFromHeader(ctx.headers);
     if (!user) {
-      console.log(`Unauthenticated while accesing ${ctx.req.url}`, ctx.headers);
       throw new Error(`Unauthenticated when trying to access ${ctx.req.url}`);
     }
     ctx.user = user;

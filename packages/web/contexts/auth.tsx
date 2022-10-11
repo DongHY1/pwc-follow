@@ -25,8 +25,6 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
     enabled: !!sessionToken,
   });
   const router = useRouter();
-
-  console.log({ status });
   //On init check cookies and set token
   useEffect(() => {
     const sessionTokenInTheCookies = Cookies.get('sessionToken');
