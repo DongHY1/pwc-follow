@@ -1,15 +1,13 @@
-import { Formik } from "formik";
-import type { NextPage } from "next";
-import Head from "next/head";
-import Image from "next/image";
-import { trpc } from "../api/APIProvider";
-import Button from "../components/Button";
-import { useAuth } from "../contexts/auth";
-import { useErrorNotificationToast } from "../hooks/useErrorNotificationToast";
-import MainLayout, { Card } from "../layouts/MainLayout";
+import { Formik } from 'formik';
+import type { NextPage } from 'next';
+import { trpc } from '../api/APIProvider';
+import Button from '../components/Button';
+import { useAuth } from '../contexts/auth';
+import { useErrorNotificationToast } from '../hooks/useErrorNotificationToast';
+import MainLayout, { Card } from '../layouts/MainLayout';
 
 const Signup: NextPage = () => {
-  const loginMutation = trpc.useMutation("auth/login");
+  const loginMutation = trpc.useMutation('auth/login');
   const { authenticate } = useAuth();
   useErrorNotificationToast(loginMutation.error?.message);
 
@@ -19,7 +17,7 @@ const Signup: NextPage = () => {
         <div className="sm:w-96">
           <h1 className="text-xl mb-10 font-bold text-center">Log In</h1>
           <Formik
-            initialValues={{ email: "", password: "" }}
+            initialValues={{ email: '', password: '' }}
             onSubmit={async (values) => {
               try {
                 const { token } = await loginMutation.mutateAsync(values);

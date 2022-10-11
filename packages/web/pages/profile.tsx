@@ -35,7 +35,7 @@ const Profile: NextPage = () => {
     });
     return flag;
   };
-  useRequiresAuth(isAuthenticated);
+  useRequiresAuth();
   return (
     <MainLayout>
       <Card>
@@ -63,7 +63,7 @@ const Profile: NextPage = () => {
                 >
                   {list?.followinglist?.map((user) => (
                     <>
-                      <li className="py-3 sm:py-4">
+                      <li className="py-3 sm:py-4" key={user.following.id}>
                         <div className="flex items-center space-x-4">
                           <div className="flex-shrink-0">
                             <div className="w-8 h-8 rounded-full" />
@@ -103,7 +103,7 @@ const Profile: NextPage = () => {
                 >
                   {users?.map((user) => (
                     <>
-                      <li className="py-3 sm:py-4">
+                      <li className="py-3 sm:py-4" key={user.id}>
                         <div className="flex items-center space-x-4">
                           <div className="flex-shrink-0">
                             <div className="w-8 h-8 rounded-full" />
@@ -143,7 +143,7 @@ const Profile: NextPage = () => {
                 >
                   {list?.followerslist?.map((user) => (
                     <>
-                      <li className="py-3 sm:py-4">
+                      <li className="py-3 sm:py-4" key={user.follower.id}>
                         <div className="flex items-center space-x-4">
                           <div className="flex-shrink-0">
                             <div className="w-8 h-8 rounded-full" />
