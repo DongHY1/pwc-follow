@@ -18,7 +18,6 @@ const UserController = trpc
         },
         include: { followers: true, followings: true },
       });
-      // 根据followings在所有列表中过滤出未关注和关注的
       return users;
     },
   })
@@ -46,39 +45,6 @@ const UserController = trpc
       return {
         followerslist: list?.followers,
         followinglist: list?.followings,
-      };
-    },
-  })
-  .query('follow', {
-    resolve: async ({ ctx }) => {
-      const user = await db.user.findFirst({
-        where: {
-          id: ctx.user?.id,
-        },
-        select: {
-          followers: true,
-          followings: true,
-        },
-      });
-      return user;
-    },
-  })
-  .query('checkFollow', {
-    input: Yup.object({
-      id: Yup.string().required(),
-    }),
-    output: Yup.object({
-      isFollow: Yup.boolean(),
-    }),
-    resolve: async ({ ctx, input }) => {
-      const check = await db.follow.findFirst({
-        where: {
-          followerId: ctx.user?.id,
-          followingId: input.id,
-        },
-      });
-      return {
-        isFollow: check ? true : false,
       };
     },
   })

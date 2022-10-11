@@ -1,6 +1,7 @@
 import MainLayout, { Card } from '../layouts/MainLayout';
 import { useQueryClient } from 'react-query';
 import { trpc } from '../api/APIProvider';
+import Follow from '../components/Follow';
 import type { NextPage } from 'next';
 import useRequiresAuth from '../hooks/useRequiresAuth';
 import { useAuth } from '../contexts/auth';
@@ -15,16 +16,26 @@ const Profile: NextPage = () => {
   });
   const { mutate: followMutate } = trpc.useMutation(['user/subscribe'], {
     onSuccess: () => {
-      queryClient.invalidateQueries(['user/follow']);
+      console.log('我关注了!');
+      queryClient.invalidateQueries(['user/all']);
       queryClient.invalidateQueries(['user/list']);
     },
   });
   const { mutate: unfollowMutate } = trpc.useMutation(['user/unsubscribe'], {
     onSuccess: () => {
-      queryClient.invalidateQueries(['user/follow']);
+      queryClient.invalidateQueries(['user/all']);
       queryClient.invalidateQueries(['user/list']);
     },
   });
+  const hasFollow = (id: string): boolean => {
+    let flag = false;
+    list?.followinglist?.map((item: any) => {
+      if (item.followingId === id) {
+        flag = true;
+      }
+    });
+    return flag;
+  };
   useRequiresAuth(isAuthenticated);
   return (
     <MainLayout>
@@ -66,15 +77,12 @@ const Profile: NextPage = () => {
                               Email: {user.following.email}
                             </p>
                           </div>
-
-                          <button
-                            className="inline-flex items-center text-base font-semibold  text-red-900dark:text-white"
-                            onClick={() =>
-                              unfollowMutate({ id: user.following.id })
-                            }
-                          >
-                            Unfollow
-                          </button>
+                          <Follow
+                            id={user.following.id}
+                            hasFollow={hasFollow(user.following.id)}
+                            unFollowMutate={unfollowMutate}
+                            followMutate={followMutate}
+                          />
                         </div>
                       </li>
                     </>
@@ -109,6 +117,12 @@ const Profile: NextPage = () => {
                               Email: {user.email}
                             </p>
                           </div>
+                          <Follow
+                            id={user.id}
+                            hasFollow={hasFollow(user.id)}
+                            unFollowMutate={unfollowMutate}
+                            followMutate={followMutate}
+                          />
                         </div>
                       </li>
                     </>
