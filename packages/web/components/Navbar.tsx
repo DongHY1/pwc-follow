@@ -14,7 +14,7 @@ export const Navbar = () => {
         <a href="https://flowbite.com/" className="flex items-center">
           <div className="mr-3 h-6 sm:h-9"></div>
           <Link href="/" passHref>
-            <button className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
+            <button className="text-2xl self-center text-xl font-semibold whitespace-nowrap dark:text-white">
               Follow
             </button>
           </Link>
@@ -50,14 +50,14 @@ export const Navbar = () => {
               <>
                 <li>
                   <Link href="/signup" passHref>
-                    <button className="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                    <button className="text-lg block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
                       Sign Up
                     </button>
                   </Link>
                 </li>
                 <li>
                   <Link href="/login" passHref>
-                    <button className="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                    <button className="text-lg block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
                       Log In
                     </button>
                   </Link>
@@ -67,14 +67,14 @@ export const Navbar = () => {
             <AuthenticatedOnly>
               <>
                 <li>
-                  <p className="block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white">
+                  <p className="text-lg block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white">
                     {user?.name}
                   </p>
                 </li>
                 <li>
                   <button
                     onClick={logout}
-                    className="block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
+                    className="text-lg block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
                   >
                     Log out
                   </button>
