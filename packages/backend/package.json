@@ -7,7 +7,9 @@
   "scripts": {
     "build": "tsc",
     "start": " nodemon src/server.ts",
-    "migrate": "yarn prisma migrate dev"
+    "generate":"yarn prisma generate",
+    "migrate": "yarn prisma migrate dev",
+    "pushdb":"yarn prisma db push"
   },
   "keywords": [],
   "author": "Mike Alche",
