@@ -2,12 +2,12 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "src/server.ts",
+  "main": "index.ts",
   "private": true,
   "scripts": {
     "build": "tsc",
-    "start:prod": "node dist/server.js",
-    "start": " nodemon src/server.ts",
+    "start:prod": "node dist/index.js",
+    "start": " nodemon index.ts",
     "generate": "yarn prisma generate",
     "migrate": "yarn prisma migrate dev --name init",
     "pushdb": "yarn prisma db push"

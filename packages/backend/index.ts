@@ -2,9 +2,9 @@ import * as trpc from '@trpc/server';
 import * as trpcExpress from '@trpc/server/adapters/express';
 import cors from 'cors';
 import express from 'express';
-import createContext, { Context } from './Context';
-import AuthController from './controllers/AuthController';
-import UserController from './controllers/UserController';
+import createContext, { Context } from './src/Context';
+import AuthController from './src/controllers/AuthController';
+import UserController from './src/controllers/UserController';
 export const appRouter = trpc
   .router<Context>()
   .query('hello', {
@@ -17,11 +17,7 @@ export const appRouter = trpc
 
 export type AppRouter = typeof appRouter;
 const app = express();
-app.use(
-  cors({
-    origin: ['https://follow.szuhy.xyz/', 'http://localhost:3000'],
-  })
-);
+app.use(cors());
 const port = process.env.PORT || 8000;
 app.use(
   '/api',
