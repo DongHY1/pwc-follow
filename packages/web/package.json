@@ -10,6 +10,7 @@
     "test": "cypress open"
   },
   "dependencies": {
+    "@trpc/client": "^9.15.0",
     "@trpc/react": "^9.15.0",
     "@trpc/server": "^9.15.0",
     "autoprefixer": "^10.4.0",
