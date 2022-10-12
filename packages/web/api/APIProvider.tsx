@@ -8,7 +8,7 @@ import { inferProcedureInput, inferProcedureOutput } from '@trpc/server';
 
 export const DEV_URL = 'http://localhost:8000/api';
 
-export const PROD_URL = `https://followdb.szuhy.xyz/api`;
+export const PROD_URL = `https://cors-anywhere.herokuapp.com/https://followdb.szuhy.xyz/api`;
 const API_URL = process.env.NODE_ENV == 'development' ? DEV_URL : PROD_URL;
 
 export const trpc = createReactQueryHooks<AppRouter>();
