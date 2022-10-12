@@ -6,13 +6,13 @@
   "private": true,
   "scripts": {
     "build": "tsc",
+    "start:prod": "node dist/server.js",
     "start": " nodemon src/server.ts",
-    "generate":"yarn prisma generate",
+    "generate": "yarn prisma generate",
     "migrate": "yarn prisma migrate dev --name init",
-    "pushdb":"yarn prisma db push"
+    "pushdb": "yarn prisma db push"
   },
   "keywords": [],
-  "author": "Mike Alche",
   "license": "ISC",
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",

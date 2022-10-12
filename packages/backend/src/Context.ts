@@ -3,7 +3,6 @@ import * as trpc from '@trpc/server';
 import * as trpcExpress from '@trpc/server/adapters/express';
 import crypto from 'crypto';
 import { getUserFromHeader } from './auth';
-import { User } from '.prisma/client';
 
 const createContext = async ({
   req,

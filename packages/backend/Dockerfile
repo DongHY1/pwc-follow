@@ -10,7 +10,11 @@ COPY . .
 
 EXPOSE 8000
 
-RUN npx prisma generate
+RUN npm run generate
+
+RUN npm run migrate
+
+RUN npm run pushdb
 
 CMD ["npm", "run", "start"]
 
