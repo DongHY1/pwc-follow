@@ -23,3 +23,34 @@ PWC Follow App</a>
 - 📚 Database with Prisma and PostgreSQL
 - 🚢 Docker It!
 - 💡 Inspired by [Create T3 App](https://create.t3.gg/)
+
+## Setup
++ Install Dependencies
+```
+yarn install
+```
++ Setup Backend Enviorment and Start
+```
+// cd packages/backen,create .env file
+DATABASE_URL="postgresql://postgres:postgres@localhost:5432/followapp?schema=public"
+TOKEN_KEY="YOURKEY"
+PORT=8000
+
+// start
+1.npm run generate
+2.npm run migrate
+3.npm run pushdb
+4.npm run start
+```
+
++ Run FrontEnd
+```
+yarn dev
+```
+Open http://localhost:3000 
+
+Or you can use docker
++ Docker
+```
+docker-compose up --build
+```
