@@ -56,6 +56,7 @@ const Form = (props: FormProps) => {
                           Your nickname
                         </div>
                         <input
+                          id="name"
                           type="name"
                           onChange={handleChange}
                           onBlur={handleBlur}
@@ -72,6 +73,7 @@ const Form = (props: FormProps) => {
                         Your email
                       </div>
                       <input
+                        id="email"
                         type="email"
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -87,6 +89,7 @@ const Form = (props: FormProps) => {
                         Password
                       </div>
                       <input
+                        id="password"
                         type="password"
                         name="password"
                         onChange={handleChange}
@@ -112,7 +115,10 @@ const Form = (props: FormProps) => {
                         href={status === FormStatus.LOGIN ? 'signup' : 'login'}
                         passHref
                       >
-                        <button className="font-medium text-primary-600 hover:underline dark:text-primary-500">
+                        <button
+                          id="sign"
+                          className="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                        >
                           {status === FormStatus.LOGIN ? 'Sign Up' : 'Sign In'}
                         </button>
                       </Link>
