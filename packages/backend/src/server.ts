@@ -19,7 +19,7 @@ export type AppRouter = typeof appRouter;
 const app = express();
 app.use(
   cors({
-    origin: 'https://follow.szuhy.xyz/',
+    origin: ['https://follow.szuhy.xyz/', 'http://localhost:3000'],
   })
 );
 const port = process.env.PORT || 8000;
