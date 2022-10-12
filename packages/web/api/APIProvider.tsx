@@ -1,12 +1,12 @@
 import { QueryClient, QueryClientProvider } from 'react-query';
-import React, { useEffect, useState } from 'react';
+import React, {useState } from 'react';
 import { createReactQueryHooks } from '@trpc/react';
 import type { AppRouter } from '../../backend/src/server';
 import Cookies from 'js-cookie';
 
 import { inferProcedureInput, inferProcedureOutput } from '@trpc/server';
 
-export const DEV_URL = 'http://localhost:8080/api';
+export const DEV_URL = 'http://localhost:8000/api';
 
 export const PROD_URL = `complete_me`;
 const API_URL = process.env.NODE_ENV == 'development' ? DEV_URL : PROD_URL;
