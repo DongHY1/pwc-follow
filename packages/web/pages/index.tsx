@@ -16,15 +16,17 @@ const Home: NextPage = () => {
               Next.JS + Express + TRPC + Prisma ORM + PostgreSQL
             </p>
           </div>
-
-          <ul className="mt-10 space-y-1 max-w-md list-inside text-gray-500 dark:text-gray-400">
-            <List text="🧙‍♂️ E2E Typesafety with tRPC" />
-            <List text="🔐 E2E testing with Cypress" />
-            <List text="🛠 FullStack React with Next.js " />
-            <List text="📚 Database with Prisma & PostgreSQL" />
-            <List text="⚡ CI/CD setup using GitHub Actions" />
-            <List text="🚢 Docker It !" />
-          </ul>
+          <div className="flex justify-center align-center">
+            <ul className="mt-10 space-y-1 max-w-md list-inside text-gray-500 dark:text-gray-400">
+              <List text="🧙‍♂️ E2E Typesafety with tRPC" />
+              <List text="🔐 E2E testing with Cypress" />
+              <List text="🛠 FullStack React with Next.js " />
+              <List text="📱 Responsive Design with Tailwind " />
+              <List text="📚 Database with Prisma" />
+              <List text="⚡ CI/CD with GitHub Actions" />
+              <List text="🚢 Docker It !" />
+            </ul>
+          </div>
 
           <div className="mt-20 flex justify-center items-center w-full mx-auto">
             <a
