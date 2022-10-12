@@ -26,6 +26,9 @@ app.use(
     createContext,
   })
 );
+app.get('/', (req, res) => {
+  res.json('Hello Folks!');
+});
 app.listen(port, () => {
   console.log(`Server is listening at http://localhost:${port}`);
 });
