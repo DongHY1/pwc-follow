@@ -8,7 +8,7 @@
     "build": "tsc",
     "start": " nodemon src/server.ts",
     "generate":"yarn prisma generate",
-    "migrate": "yarn prisma migrate dev",
+    "migrate": "yarn prisma migrate dev --name init",
     "pushdb":"yarn prisma db push"
   },
   "keywords": [],
