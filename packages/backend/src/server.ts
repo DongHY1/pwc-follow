@@ -17,7 +17,11 @@ export const appRouter = trpc
 
 export type AppRouter = typeof appRouter;
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    origin: 'https://follow.szuhy.xyz/',
+  })
+);
 const port = process.env.PORT || 8000;
 app.use(
   '/api',
