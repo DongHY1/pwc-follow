@@ -5,10 +5,9 @@
   "main": "src/server.ts",
   "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
     "start": " nodemon src/server.ts",
-    "migrate:dev": "yarn prisma migrate dev"
+    "migrate": "yarn prisma migrate dev"
   },
   "keywords": [],
   "author": "Mike Alche",

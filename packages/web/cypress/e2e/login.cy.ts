@@ -18,3 +18,4 @@ describe('Login Page', () => {
     cy.url().should('contain', 'http://localhost:3000');
   });
 });
+export {};

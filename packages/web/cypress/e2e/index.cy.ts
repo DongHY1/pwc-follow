@@ -25,3 +25,4 @@ describe('GitHub', () => {
     cy.url().should('eq', 'https://github.com/DongHY1/pwc-follow');
   });
 });
+export {};
